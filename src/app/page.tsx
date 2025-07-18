@@ -1,9 +1,10 @@
-"use client";
-
 import Chat from "@/components/Chat";
-import SideBar from "@/components/SideBar";
-import { useEffect, useState } from "react";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Chat App",
+  description: "...",
+};
 export default function Home() {
   return <Chat />;
 }

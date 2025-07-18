@@ -5,6 +5,7 @@ import "./globals.css";
 import SideBar from "@/components/SideBar";
 import { useChatStore } from "@/store/store";
 import { useEffect, useState } from "react";
+
 export default function RootLayout({
   children,
 }: Readonly<{

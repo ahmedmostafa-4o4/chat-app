@@ -1,3 +1,4 @@
+"use client";
 import { useChatStore } from "@/store/store";
 
 const Chat = () => {
