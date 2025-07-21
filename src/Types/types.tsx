@@ -13,5 +13,6 @@ export type ChatState = {
 export type Message = {
   sender: User;
   text: string;
+  type: "sent" | "received";
   timestamp: string;
 };

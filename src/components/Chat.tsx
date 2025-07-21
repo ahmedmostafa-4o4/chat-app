@@ -11,6 +11,9 @@ import Image from "next/image";
 import DropDown from "./DropDown";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { messages } from "@/data/messages";
+import { Message } from "@/Types/types";
+import ChatBubble from "./ChatBubble";
 
 const EmojiPicker = dynamic(() => import("emoji-picker-react"), {
   ssr: false,
@@ -22,6 +25,8 @@ const Chat = () => {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const [message, setMessage] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
+  const messagesFetch: Message[] = messages;
 
   const onInputKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -49,7 +54,6 @@ const Chat = () => {
     adjustHeight();
   }, [message]);
 
-  console.log(message);
   return (
     <div className="flex flex-col w-full h-screen">
       {currentChat ? (
@@ -89,8 +93,10 @@ const Chat = () => {
         </header>
       ) : null}
 
-      <div className="h-max w-full text-center flex-3/4 align-middle dark:text-white bg-gray-100 grid place-items-center text-4xl">
-        {currentChat ? currentChat.name : "Select a chat"}
+      <div className="h-max w-full overflow-y-auto text-center flex-3/4 align-middle dark:text-white bg-gray-100 p-3">
+        {messagesFetch.map((message, index) => (
+          <ChatBubble key={index} message={message} />
+        ))}
       </div>
       <div className="w-full bg-white dark:bg-gray-700 flex items-center">
         <div>
@@ -105,6 +111,10 @@ const Chat = () => {
               hidden={true}
               id="file"
               accept="image/*"
+              multiple
+              onChange={(e) => {
+                setFiles((prev) => [...prev, ...e.target.files!]);
+              }}
               ref={imageInputRef}
             />
             <PhotoIcon className="size-4" />
