@@ -12,7 +12,7 @@ const MyChats = ({ user }: { user: User }) => {
   return (
     <li
       className={`list-row rounded-none cursor-pointer hover:bg-primary dark:hover:bg-gray-700 ${
-        currentChat?.id === user.id && "bg-primary dark:bg-gray-700"
+        currentChat?.id === user?.id && "bg-primary dark:bg-gray-700"
       }`}
       onClick={() => {
         setCurrentChat(user);
@@ -23,7 +23,7 @@ const MyChats = ({ user }: { user: User }) => {
       </div>
       <div>
         <div className="font-semibold" title="Dio Lupa">
-          {trimText(`${user.name}`, 20)}
+          {trimText(`${user?.name}`, 20)}
         </div>
         <div
           className="text-xs uppercase opacity-60"

@@ -3,9 +3,15 @@ export type User = {
   image: string | null;
   online: boolean;
   id: string;
-};
+} | null;
 
 export type ChatState = {
   currentChat: User | null;
   setCurrentChat: (chat: User) => void;
+};
+
+export type Message = {
+  sender: User;
+  text: string;
+  timestamp: string;
 };

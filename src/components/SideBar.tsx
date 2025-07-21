@@ -9,7 +9,7 @@ const SideBar = ({ isSmaller }: { isSmaller: boolean }) => {
       <ul className="list bg-base-100 rounded-box shadow-md h-screen overflow-y-scroll overflow-x-hidden">
         <Nav />
         {users.map((user) => (
-          <MyChats key={user.id} user={user} />
+          <MyChats key={user?.id} user={user} />
         ))}
       </ul>
     </div>
