@@ -1,8 +1,12 @@
 export type User = {
   name: string;
-  image: string | null;
-  online: boolean;
-  id: string;
+  email: string;
+  image?: string | null;
+  about?: string | null;
+  bio?: string | null;
+  phone_number: string | null;
+  online?: boolean;
+  id?: string;
 } | null;
 
 export type ChatState = {
@@ -16,3 +20,16 @@ export type Message = {
   type: "sent" | "received";
   timestamp: string;
 };
+
+export interface registerUser {
+  name: string;
+  email: string;
+  phone_number: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface loginUser {
+  email: string;
+  password: string;
+}

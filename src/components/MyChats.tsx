@@ -26,7 +26,7 @@ const MyChats = ({ user }: { user: User }) => {
           {trimText(`${user?.name}`, 20)}
         </div>
         <div
-          className="text-xs uppercase opacity-60"
+          className="text-xs opacity-60"
           title="Remaining Reason Remaining ReasonRemaining ReasonRemaining
           ReasonRemaining ReasonRemaining ReasonRemaining Reason"
         >
@@ -55,7 +55,7 @@ const MyChats = ({ user }: { user: User }) => {
         }
       >
         <li className="text-red-500">
-          <a href="">
+          <a href="" className="flex items-center">
             <TrashIcon className="size-4" /> Delete Chat
           </a>
         </li>

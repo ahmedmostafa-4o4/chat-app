@@ -22,7 +22,7 @@ export default function DropDown({
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content bg-base-100 rounded-box z-1 p-2 shadow-sm"
+        className="dropdown-content menu bg-base-100 rounded-box !w-48 z-1 p-2 shadow-sm"
       >
         {children}
       </ul>

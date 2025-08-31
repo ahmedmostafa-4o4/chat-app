@@ -1,4 +1,5 @@
 import { Message } from "@/Types/types";
+import { getTime } from "@/utilities/util";
 import Image from "next/image";
 
 const ChatBubble = ({ message }: { message: Message }) => {
@@ -22,7 +23,7 @@ const ChatBubble = ({ message }: { message: Message }) => {
       </div>
       <div className="chat-header">
         {message.sender?.name}
-        <time className="text-xs opacity-50">{message.timestamp}</time>
+        <time className="text-xs opacity-50">{getTime(message.timestamp)}</time>
       </div>
       <div className="chat-bubble">{message.text}</div>
       <div className="chat-footer opacity-50">Delivered</div>

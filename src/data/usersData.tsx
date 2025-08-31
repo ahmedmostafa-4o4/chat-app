@@ -26,3 +26,13 @@ export const usersData = (): import("@/Types/types").User[] => [
     online: false,
   },
 ];
+
+export const authUser = (): import("@/Types/types").User => {
+  return {
+    id: "1",
+    email: "ahmedmostafa@gmail.com",
+    name: "Ahmed Mostafa",
+    image: "/images/my-photo.jpg",
+    online: true,
+  };
+};
