@@ -3,7 +3,7 @@ import "@/app/globals.css";
 
 import SideBar from "@/components/SideBar";
 import { useChatStore } from "@/store/store";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ChatLayout = ({
