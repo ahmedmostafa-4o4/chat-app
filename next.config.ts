@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 module.exports = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   images: {
     domains: ["img.daisyui.com", "images.pexels.com"], // Add the domain for your images here
   },

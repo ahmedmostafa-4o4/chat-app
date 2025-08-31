@@ -6,11 +6,11 @@ import DropDown from "./DropDown";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/16/solid";
 import { PlusIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useUserStore } from "@/store/store";
-import { useRouter } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 const Nav = ({ path }: { path: string }) => {
   const userImage = useUserStore((state) => state.user?.image);
-  console.log(path);
+  const params = useSearchParams();
+  const sidebarMode = params.get("sidebar");
   const router = useRouter();
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     router.push(`/?sidebar=search&s=${e.target.value}`);
