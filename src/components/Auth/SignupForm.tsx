@@ -2,7 +2,7 @@
 import { useUserStore } from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import PhoneInputWithCountrySelect from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
@@ -21,7 +21,7 @@ const SignupForm = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handlePhoneInputChange = (e) => {
+  const handlePhoneInputChange = (e: string) => {
     setUser({ ...user, phone_number: e });
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -104,7 +104,7 @@ const SignupForm = () => {
         name="phone_number"
         className="input validator"
         value={user.phone_number}
-        onChange={handlePhoneInputChange}
+        onChange={() => handlePhoneInputChange}
       />
       <label className="input validator">
         <svg
