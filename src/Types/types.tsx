@@ -1,10 +1,10 @@
 export type User = {
   name: string;
-  email: string;
+  email?: string;
   image?: string | null;
   about?: string | null;
   bio?: string | null;
-  phone_number: string | null;
+  phone_number?: string | null;
   online?: boolean;
   id?: string;
 } | null;
