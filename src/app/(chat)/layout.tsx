@@ -10,7 +10,7 @@ const ChatLayout = ({
   children,
 }: {
   children: React.ReactNode;
-  params: string;
+  params: Promise<URLSearchParams>;
 }) => {
   const currentChat = useChatStore((state) => state.currentChat);
   const params = useSearchParams();
