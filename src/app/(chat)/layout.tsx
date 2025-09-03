@@ -3,7 +3,6 @@ import "@/app/globals.css";
 
 import SideBar from "@/components/SideBar";
 import { useChatStore } from "@/store/store";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ChatLayout = ({
@@ -13,8 +12,7 @@ const ChatLayout = ({
   params: Promise<URLSearchParams>;
 }) => {
   const currentChat = useChatStore((state) => state.currentChat);
-  const params = useSearchParams();
-  const sidebarMode = params.get("sidebar");
+
   const [isSmallerScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ const ChatLayout = ({
   }, []);
 
   function display() {
-    const sidebar = <SideBar isSmaller={isSmallerScreen} mode={sidebarMode} />;
+    const sidebar = <SideBar isSmaller={isSmallerScreen} />;
 
     if (isSmallerScreen) {
       return <div className="flex">{currentChat ? children : sidebar}</div>;
