@@ -7,7 +7,7 @@ import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/16/solid";
 import { PlusIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useUserStore } from "@/store/store";
 import { useRouter } from "next/navigation";
-const Nav = ({ path }: { path: string }) => {
+const Nav = ({ path }: { path: string | null }) => {
   const userImage = useUserStore((state) => state.user?.image);
   const router = useRouter();
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
