@@ -3,7 +3,7 @@ import "@/app/globals.css";
 
 import SideBar from "@/components/SideBar";
 import { useChatStore } from "@/store/store";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const ChatLayout = ({
   children,
@@ -27,14 +27,21 @@ const ChatLayout = ({
     const sidebar = <SideBar isSmaller={isSmallerScreen} />;
 
     if (isSmallerScreen) {
-      return <div className="flex">{currentChat ? children : sidebar}</div>;
+      return (
+        <Suspense>
+          {" "}
+          <div className="flex">{currentChat ? children : sidebar}</div>
+        </Suspense>
+      );
     }
 
     return (
-      <div className="flex">
-        {sidebar}
-        {children}
-      </div>
+      <Suspense>
+        <div className="flex">
+          {sidebar}
+          {children}
+        </div>
+      </Suspense>
     );
   }
   return display();
