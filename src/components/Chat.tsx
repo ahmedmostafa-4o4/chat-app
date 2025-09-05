@@ -12,18 +12,23 @@ const Chat = () => {
   const messagesFetch: Message[] = messages;
 
   return (
-    <div className="flex flex-col w-full h-screen sm:h-dvh w-xs:h-dvh">
+    <div className="flex flex-col w-full h-dvh">
       {currentChat ? (
         <>
+          {/* Header */}
           <ChatHeader
             currentChat={currentChat}
             setCurrentChat={setCurrentChat}
           />
-          <div className="h-max w-full overflow-y-auto text-center flex-3/4 align-middle dark:text-white bg-gray-100 p-3">
+
+          {/* Messages */}
+          <div className="flex-grow w-full overflow-y-auto text-center dark:text-white bg-gray-100 p-3">
             {messagesFetch.map((message, index) => (
               <ChatBubble key={index} message={message} />
             ))}
           </div>
+
+          {/* Input */}
           <NewMessage />
         </>
       ) : (
