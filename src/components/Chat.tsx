@@ -12,7 +12,7 @@ const Chat = () => {
   const messagesFetch: Message[] = messages;
 
   return (
-    <div className="flex flex-col w-full h-screen">
+    <div className="flex flex-col w-full h-screen sm:h-dvh w-xs:h-dvh">
       {currentChat ? (
         <>
           <ChatHeader
