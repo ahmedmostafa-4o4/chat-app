@@ -43,7 +43,7 @@ const ChatLayout = ({
     }
 
     return (
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <div className="flex">
           {sidebar}
           {children}
