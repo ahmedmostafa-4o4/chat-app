@@ -45,7 +45,7 @@ const ChatBubble = ({ message }: { message: Message }) => {
             className={`absolute ${
               message.type === "sent"
                 ? "top-0 left-0 -translate-x-10"
-                : "inset-0 translate-x-10"
+                : "inset-0 translate-x-3"
             }  translate-y-0.5 z-10 size-2.5`}
             direction={`${
               message.type === "sent" ? "dropdown-start" : "dropdown-end"
