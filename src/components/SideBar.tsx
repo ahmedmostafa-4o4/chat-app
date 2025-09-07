@@ -12,7 +12,7 @@ const SideBar = ({ isSmaller }: { isSmaller: boolean }) => {
 
   return (
     <div className={`min-w-xs ${isSmaller ? "w-full" : "w-xl"}`}>
-      <ul className="list bg-base-100 rounded-box shadow-md h-screen overflow-y-auto">
+      <ul className="list rounded-none bg-base-100 rounded-box shadow-md h-screen overflow-y-auto">
         <Nav path={mode} />
         {mode === "search" ? (
           <SearchItems user={users[0]} />

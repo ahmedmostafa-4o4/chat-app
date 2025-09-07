@@ -35,9 +35,18 @@ const NewMessage = () => {
     setMessage("");
   };
 
+  const handleImageSend = () => {
+    if (files.length > 0) console.log("Sending image:", files);
+    if ((files.length = 0)) return;
+    setFiles([]);
+  };
+
+  const handleSend = () => {
+    handleSendMessage();
+    handleImageSend();
+  };
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFiles((prev) => [...prev, ...e.target.files!]);
-    console.log(files);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -55,8 +64,6 @@ const NewMessage = () => {
   }, [message]);
 
   useEffect(() => {
-    console.log(files);
-
     const handleResize = () => {
       adjustHeight();
     };
@@ -64,15 +71,15 @@ const NewMessage = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [files]);
+  }, [message]);
 
   return (
-    <div>
+    <div className="bg-base-300">
       <div className="flex flex-wrap">
         {files.map((file, index) => (
           <div
             key={index}
-            className="m-2 p-1 w-24 h-24 bg-gray-200 rounded-2xl relative bg-"
+            className="m-2 p-1 w-24 h-24 bg-base-300 rounded-2xl relative"
           >
             <Image
               src={URL.createObjectURL(file)}
@@ -91,10 +98,10 @@ const NewMessage = () => {
           </div>
         ))}
       </div>
-      <div className="w-full bg-white dark:bg-gray-700 flex items-center">
+      <div className="w-full  flex items-center bg-base-300">
         <div>
           <button
-            className="btn btn-circle btn-ghost"
+            className="btn btn-circle btn-ghost text-base-content"
             onClick={() => {
               imageInputRef.current?.click();
             }}
@@ -113,7 +120,7 @@ const NewMessage = () => {
           <DropDown
             direction="dropdown-top"
             label={
-              <button className="btn btn-circle btn-ghost">
+              <button className="btn btn-circle btn-ghost text-base-content">
                 <FaceSmileIcon className="size-4" />
               </button>
             }
@@ -134,15 +141,15 @@ const NewMessage = () => {
             ref={messageInputRef}
             rows={1}
             placeholder="Type here"
-            className="input w-full focus:outline-none focus:ring-0 focus:border-accent-content resize-none overflow-y-auto h-auto p-2 max-h-40 overflow-x-hidden "
+            className="input w-full focus:outline-none focus:ring-0 focus:border-accent-content resize-none overflow-y-auto h-auto p-2 max-h-40 overflow-x-hidden text-base-content"
             value={message}
             onKeyDown={onInputKeyDown}
             onChange={handleInputChange}
           ></textarea>
 
           <button
-            className="btn btn-circle btn-ghost"
-            onClick={handleSendMessage}
+            className="btn btn-circle btn-ghost text-base-content"
+            onClick={handleSend}
           >
             <PaperAirplaneIcon className="size-4" />
           </button>

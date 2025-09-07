@@ -11,8 +11,8 @@ const MyChats = ({ user }: { user: User }) => {
   const currentChat = useChatStore((state) => state.currentChat);
   return (
     <li
-      className={`list-row rounded-none cursor-pointer hover:bg-primary dark:hover:bg-gray-700 ${
-        currentChat?.id === user?.id && "bg-primary dark:bg-gray-700"
+      className={`list-row rounded-none cursor-pointer hover:bg-base-300 ${
+        currentChat?.id === user?.id && "bg-base-300"
       }`}
       onClick={() => {
         setCurrentChat(user);
@@ -22,11 +22,11 @@ const MyChats = ({ user }: { user: User }) => {
         <UserImage user={user} />
       </div>
       <div>
-        <div className="font-semibold" title="Dio Lupa">
+        <div className="font-semibold text-base-content" title="Dio Lupa">
           {trimText(`${user?.name}`, 20)}
         </div>
         <div
-          className="text-xs opacity-60"
+          className="text-xs opacity-60 text-base-content"
           title="Remaining Reason Remaining ReasonRemaining ReasonRemaining
           ReasonRemaining ReasonRemaining ReasonRemaining Reason"
         >
@@ -44,7 +44,7 @@ const MyChats = ({ user }: { user: User }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-3"
+            className="size-3 text-base-content"
           >
             <path
               strokeLinecap="round"
