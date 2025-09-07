@@ -35,7 +35,7 @@ const ChatLayout = ({
 
     if (isSmallerScreen) {
       return (
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
           {" "}
           <div className="flex">{currentChat ? children : sidebar}</div>
         </Suspense>
