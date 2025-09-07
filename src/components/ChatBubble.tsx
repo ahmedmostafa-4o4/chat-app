@@ -31,14 +31,14 @@ const ChatBubble = ({ message }: { message: Message }) => {
             />
           </div>
         </div>
-        <div className="chat-header text-base-content">
+        <div className="chat-header text-base-content ">
           {message.sender?.name}
           <time className="text-xs opacity-50 text-base-content">
             {getTime(message.timestamp)}
           </time>
         </div>
 
-        <div className="chat-bubble relative">
+        <div className="chat-bubble relative max-w-[80%]">
           {message.text}{" "}
           <DropDown
             label={<EllipsisVerticalIcon className="size-4" />}
