@@ -3,6 +3,7 @@ import "@/app/globals.css";
 
 import SideBar from "@/components/SideBar";
 import { useChatStore } from "@/store/store";
+import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 const ChatLayout = ({
@@ -12,8 +13,14 @@ const ChatLayout = ({
   params: Promise<URLSearchParams>;
 }) => {
   const currentChat = useChatStore((state) => state.currentChat);
-
+  const setCurrentChat = useChatStore((state) => state.setCurrentChat);
+  const params = useSearchParams();
+  const mode = params.get("mode") || null;
   const [isSmallerScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    if (mode !== "chat") setCurrentChat(null);
+  }, [setCurrentChat, mode]);
 
   useEffect(() => {
     const checkWidth = () => setIsSmallScreen(window.innerWidth < 768);

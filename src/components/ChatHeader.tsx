@@ -5,8 +5,11 @@ import {
 import Image from "next/image";
 import DropDown from "./DropDown";
 import { ChatState } from "@/Types/types";
+import { useRouter } from "next/navigation";
 
 const ChatHeader = ({ currentChat, setCurrentChat }: ChatState) => {
+  const router = useRouter();
+
   return (
     <header className="w-full p-2 bg-base-300 ">
       <div className="flex items-center justify-between">
@@ -15,6 +18,7 @@ const ChatHeader = ({ currentChat, setCurrentChat }: ChatState) => {
             className="btn btn-circle btn-ghost text-base-content"
             onClick={() => {
               setCurrentChat(null);
+              router.push("/");
             }}
           >
             <ArrowUturnLeftIcon className="size-4 text-base-content" />

@@ -5,9 +5,12 @@ import UserImage from "./UserImage";
 import { trimText } from "@/utilities/util";
 import { User } from "@/Types/types";
 import { useChatStore } from "@/store/store";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const MyChats = ({ user }: { user: User }) => {
   const setCurrentChat = useChatStore((state) => state.setCurrentChat);
+  const router = useRouter();
+  const params = useSearchParams();
   const currentChat = useChatStore((state) => state.currentChat);
   return (
     <li
@@ -15,6 +18,7 @@ const MyChats = ({ user }: { user: User }) => {
         currentChat?.id === user?.id && "bg-base-300"
       }`}
       onClick={() => {
+        if (!params.get("mode")) router.push("/?mode=chat");
         setCurrentChat(user);
       }}
     >

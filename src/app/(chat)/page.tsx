@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   title: "Chat App",
   description: "...",
 };
-export default function Home() {
+
+export default async function Home() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Chat />
