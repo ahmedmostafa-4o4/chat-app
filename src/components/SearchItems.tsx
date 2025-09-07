@@ -2,18 +2,44 @@ import { User } from "@/Types/types";
 import UserImage from "./UserImage";
 import { trimText } from "@/utilities/util";
 import { useChatStore } from "@/store/store";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 const SearchItems = ({ user }: { user: User }) => {
   const setCurrentChat = useChatStore((state) => state.setCurrentChat);
   const currentChat = useChatStore((state) => state.currentChat);
+  const router = useRouter();
+  const params = useSearchParams();
+  const allParams = Object.fromEntries(params.entries());
 
+  const pendingUser = useRef<User | null>(null);
+  const handleSelectChat = () => {
+    pendingUser.current = user; // store the clicked user temporarily
+    if (params.get("mode") !== "chat") {
+      const queryString = new URLSearchParams({
+        ...allParams,
+        mode: "chat",
+      }).toString();
+
+      router.push(`/?${queryString}`);
+    } else {
+      setCurrentChat(user); // if already in ?mode=chat
+    }
+  };
+
+  useEffect(() => {
+    if (params.get("mode") === "chat" && pendingUser.current) {
+      setCurrentChat(pendingUser.current);
+      pendingUser.current = null; // clear after setting
+    }
+  }, [params, setCurrentChat]);
   return (
     <li
       className={`list-row rounded-none cursor-pointer hover:bg-base-300 items-center gap-2 p-2 ${
-        currentChat?.id === user?.id && "hover:bg-base-300"
+        currentChat?.id === user?.id && "hover:bg-base-300 bg-base-300"
       }`}
       onClick={() => {
-        setCurrentChat(user);
+        handleSelectChat();
       }}
     >
       <div className="h-12">

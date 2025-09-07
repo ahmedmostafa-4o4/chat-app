@@ -6,13 +6,19 @@ import DropDown from "./DropDown";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/16/solid";
 import { PlusIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { useUserStore } from "@/store/store";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ThemeSwitcher from "./ThemeChange";
 const Nav = ({ path }: { path: string | null }) => {
   const userImage = useUserStore((state) => state.user?.image);
+  const params = useSearchParams();
+  const allParams = Object.fromEntries(params.entries());
   const router = useRouter();
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`/?sidebar=search&s=${e.target.value}`);
+    const queryString = new URLSearchParams({
+      ...allParams,
+      s: e.target.value,
+    }).toString();
+    router.push(`/?${queryString}`);
   };
   return (
     <nav className="navbar bg-base-100 flex justify-between items-center p-4">
@@ -25,8 +31,16 @@ const Nav = ({ path }: { path: string | null }) => {
             className="border-b border-gray-400 focus:outline-none w-full"
             onChange={handleSearchChange}
           />
+          <select className="select border-none w-full max-w-xs text-xs">
+            <option disabled value={""} className="option">
+              Search By
+            </option>
+            <option value={"name"}>Name</option>
+            <option value={"email"}>Email</option>
+            <option value={"phone"}>Phone number</option>
+          </select>
           <button
-            className="btn btn-circle btn-ghost "
+            className="btn btn-circle btn-ghost text-base-content"
             onClick={() => router.push("/")}
           >
             <ArrowLeftStartOnRectangleIcon className="size-4" />
